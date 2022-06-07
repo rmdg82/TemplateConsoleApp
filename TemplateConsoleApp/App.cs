@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TemplateConsoleApp.ArgParser;
+using TemplateConsoleApp.Helpers;
 using TemplateConsoleApp.Models.Settings;
 using TemplateConsoleApp.Services.Implementations;
 using TemplateConsoleApp.Services.Interfaces;
@@ -67,5 +68,31 @@ public class App
     /// <returns></returns>
     public async Task RunAsync()
     {
+        PrettyConsole.WriteWrappedHeader("Hello world!");
+        Exit(isSucces: true);
+    }
+
+    private static void Exit(bool isSucces = true, string? errorMessage = null)
+    {
+        if (isSucces)
+        {
+            PrettyConsole.WriteWrappedHeader("All completed. Quitting the application ...", headerColor: ConsoleColor.Green);
+
+            CloseConsole(0);
+        }
+
+        PrettyConsole.WriteWrappedHeader(
+            $"Somenthing went wrong. Quitting the application ... " +
+            (string.IsNullOrEmpty(errorMessage) ? string.Empty : "\nError message: " + errorMessage)
+            , headerColor: ConsoleColor.Red);
+
+        CloseConsole(-1);
+    }
+
+    private static void CloseConsole(int errorCode)
+    {
+        Console.WriteLine("Press any key to close the console ...");
+        Console.ReadKey();
+        Environment.Exit(errorCode);
     }
 }
