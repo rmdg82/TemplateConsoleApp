@@ -11,5 +11,5 @@ namespace TemplateConsoleApp.Models.Settings;
 /// </summary>
 public class AppSettings
 {
-    public string MyProperty { get; set; }
+    public string Property1 { get; set; }
 }

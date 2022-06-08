@@ -20,6 +20,6 @@ internal class Program
             .WithParsed(opt => { result = opt; })
             .WithNotParsed(errors => Environment.Exit(-1));
 
-        return result;
+        return result ?? throw new ArgumentNullException($"Problems parsing command line argumets: {args}");
     }
 }

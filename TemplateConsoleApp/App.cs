@@ -22,7 +22,7 @@ public class App
     private readonly IService1 _service1;
     private readonly IService2 _service2;
 
-    public static GlobalSettings GlobalSettings { get; set; }
+    public static GlobalSettings? GlobalSettings { get; set; }
 
     private App(IHost host, ArgsOptions parsedArgs)
     {
